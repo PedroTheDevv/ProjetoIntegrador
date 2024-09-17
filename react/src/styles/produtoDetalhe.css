@@ -1,0 +1,19 @@
+.produto-detalhe {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 900px;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.produto-detalhe img {
+    width: 250px;
+    height: 340px;
+    display: block;
+    object-fit: cover;
+}

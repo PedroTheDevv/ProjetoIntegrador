@@ -1,0 +1,1209 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Projeto Integrador",
+        "version": "1.0.0",
+        "description": "Documentação do Projeto Integrador"
+    },
+    "security": [
+        {
+            "bearerAuth": []
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:5000"
+        }
+    ],
+    "paths": {
+        "/produtos": {
+            "get": {
+                "summary": "Retorna todos os produtos",
+                "tags": [
+                    "Produtos"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Uma lista de produtos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "idProduct": {
+                                                "type": "integer",
+                                                "description": "ID do produto"
+                                            },
+                                            "nameProduct": {
+                                                "type": "string",
+                                                "description": "Nome do produto"
+                                            },
+                                            "sizeProduct": {
+                                                "type": "string",
+                                                "description": "Tamanhos do produto"
+                                            },
+                                            "priceProduct": {
+                                                "type": "number",
+                                                "description": "Preço do produto"
+                                            },
+                                            "imageProduct": {
+                                                "type": "string",
+                                                "description": "Caminho da imagem do produto"
+                                            },
+                                            "descriptionProduct": {
+                                                "type": "string",
+                                                "description": "Descrição do produto"
+                                            },
+                                            "categoryProduct": {
+                                                "type": "string",
+                                                "description": "Categoria do produto"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro ao buscar produtos"
+                    }
+                }
+            }
+        },
+        "/produto/{id}": {
+            "get": {
+                "summary": "Retorna os detalhes de um produto específico",
+                "description": "Busca os detalhes de um produto baseado no ID fornecido.",
+                "tags": [
+                    "Produtos"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do produto",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalhes do produto",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "idProduct": {
+                                            "type": "integer",
+                                            "description": "ID do produto"
+                                        },
+                                        "nameProduct": {
+                                            "type": "string",
+                                            "description": "Nome do produto"
+                                        },
+                                        "sizeProduct": {
+                                            "type": "string",
+                                            "description": "Tamanhos do produto"
+                                        },
+                                        "priceProduct": {
+                                            "type": "number",
+                                            "description": "Preço do produto"
+                                        },
+                                        "imageProduct": {
+                                            "type": "string",
+                                            "description": "Caminho da imagem do produto"
+                                        },
+                                        "descriptionProduct": {
+                                            "type": "string",
+                                            "description": "Descrição do produto"
+                                        },
+                                        "categoryProduct": {
+                                            "type": "string",
+                                            "description": "Categoria do produto"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Produto não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string",
+                                    "example": "Produto não encontrado"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro ao buscar detalhes do produto",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string",
+                                    "example": "Erro ao buscar detalhes do produto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/produtos": {
+            "get": {
+                "summary": "Lista produtos por categoria",
+                "description": "Retorna uma lista de produtos filtrados por categoria.",
+                "tags": [
+                    "Produtos"
+                ],
+                "parameters": [
+                    {
+                        "name": "category",
+                        "in": "query",
+                        "required": true,
+                        "description": "Categoria dos produtos a serem buscados.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de produtos retornada com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "idProduct": {
+                                                "type": "integer",
+                                                "description": "ID do produto"
+                                            },
+                                            "nameProduct": {
+                                                "type": "string",
+                                                "description": "Nome do produto"
+                                            },
+                                            "sizeProduct": {
+                                                "type": "string",
+                                                "description": "Tamanhos do produto"
+                                            },
+                                            "priceProduct": {
+                                                "type": "number",
+                                                "description": "Preço do produto"
+                                            },
+                                            "imageProduct": {
+                                                "type": "string",
+                                                "description": "Caminho da imagem do produto"
+                                            },
+                                            "descriptionProduct": {
+                                                "type": "string",
+                                                "description": "Descrição do produto"
+                                            },
+                                            "categoryProduct": {
+                                                "type": "string",
+                                                "description": "Categoria do produto"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro ao buscar produtos."
+                    }
+                }
+            }
+        },
+        "/api/search": {
+            "get": {
+                "summary": "Busca produtos por nome",
+                "description": "Retorna uma lista de produtos cujo nome contém o termo de busca fornecido.",
+                "tags": [
+                    "Produtos"
+                ],
+                "parameters": [
+                    {
+                        "name": "busca",
+                        "in": "busca",
+                        "required": true,
+                        "description": "Termo a ser buscado no nome dos produtos.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de produtos correspondente à busca.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "idProduct": {
+                                                "type": "integer",
+                                                "description": "ID do produto"
+                                            },
+                                            "nameProduct": {
+                                                "type": "string",
+                                                "description": "Nome do produto"
+                                            },
+                                            "sizeProduct": {
+                                                "type": "string",
+                                                "description": "Tamanhos do produto"
+                                            },
+                                            "priceProduct": {
+                                                "type": "number",
+                                                "description": "Preço do produto"
+                                            },
+                                            "imageProduct": {
+                                                "type": "string",
+                                                "description": "Caminho da imagem do produto"
+                                            },
+                                            "descriptionProduct": {
+                                                "type": "string",
+                                                "description": "Descrição do produto"
+                                            },
+                                            "categoryProduct": {
+                                                "type": "string",
+                                                "description": "Categoria do produto"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Necessita de um termo de busca."
+                    },
+                    "500": {
+                        "description": "Erro ao realizar a busca no banco de dados."
+                    }
+                }
+            }
+        },
+        "/api/cadastroUser": {
+            "post": {
+                "summary": "Cadastro de usuário",
+                "description": "Cria um novo usuário no sistema com email, nome e senha.",
+                "tags": [
+                    "Autenticação"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": {
+                                        "type": "string",
+                                        "description": "Nome completo do usuário",
+                                        "example": "João da Silva"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "description": "Email do usuário",
+                                        "example": "joao@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "description": "Senha do usuário",
+                                        "example": "senha123"
+                                    }
+                                },
+                                "required": [
+                                    "nome",
+                                    "email",
+                                    "password"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Usuário cadastrado com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string",
+                                    "example": "Usuário cadastrado com sucesso"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Dados inválidos fornecidos."
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor ao processar a solicitação."
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "summary": "Login de usuário",
+                "description": "Realiza o login do usuário e retorna um token JWT para autenticação.",
+                "tags": [
+                    "Autenticação"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "description": "Email do usuário",
+                                        "example": "joao@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "description": "Senha do usuário",
+                                        "example": "senha123"
+                                    }
+                                },
+                                "required": [
+                                    "email",
+                                    "password"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login realizado com sucesso. Retorna um token JWT e detalhes do usuário.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "token": {
+                                            "type": "string",
+                                            "description": "Token JWT para autenticação."
+                                        },
+                                        "username": {
+                                            "type": "string",
+                                            "description": "Nome do usuário logado."
+                                        },
+                                        "isAdmin": {
+                                            "type": "boolean",
+                                            "description": "Indica se o usuário é um administrador."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuário não encontrado ou senha incorreta."
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor ao processar a solicitação."
+                    }
+                }
+            }
+        },
+        "/api/cadastroProduto": {
+            "post": {
+                "summary": "Cadastro de produto",
+                "description": "Cadastra um novo produto no sistema. Requer autenticação e upload de uma imagem.",
+                "tags": [
+                    "Produtos"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "nomeProd": {
+                                        "type": "string",
+                                        "description": "Nome do produto",
+                                        "example": "Vestido Longo"
+                                    },
+                                    "tamanhoProd": {
+                                        "type": "string",
+                                        "description": "Tamanho do produto",
+                                        "example": "M G GG XGG"
+                                    },
+                                    "precoProd": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "description": "Preço do produto",
+                                        "example": 299.99
+                                    },
+                                    "descriptionProd": {
+                                        "type": "string",
+                                        "description": "Descrição do produto",
+                                        "example": "Vestido de festa chique"
+                                    },
+                                    "categoriaProd": {
+                                        "type": "string",
+                                        "description": "Categoria do produto",
+                                        "example": "Vestido"
+                                    },
+                                    "imagemProd": {
+                                        "type": "string",
+                                        "format": "binary",
+                                        "description": "Imagem do produto"
+                                    }
+                                },
+                                "required": [
+                                    "nomeProd",
+                                    "tamanhoProd",
+                                    "precoProd",
+                                    "descriptionProd",
+                                    "categoriaProd",
+                                    "imagemProd"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Produto cadastrado com sucesso.",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "string",
+                                    "example": "Produto cadastrado com sucesso"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Dados inválidos fornecidos ou imagem não fornecida."
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor ao processar a solicitação."
+                    }
+                }
+            }
+        },
+        "/editarProduto/{id}": {
+            "put": {
+                "summary": "Atualização de produto",
+                "description": "Atualiza as informações de um produto existente no sistema.",
+                "tags": [
+                    "Produtos"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "description": "ID do produto a ser atualizado",
+                            "example": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": {
+                                        "type": "string",
+                                        "description": "Nome do produto",
+                                        "example": "Vestido Longo 2"
+                                    },
+                                    "size": {
+                                        "type": "string",
+                                        "description": "Tamanho do produto",
+                                        "example": "M G GG"
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "description": "Preço do produto",
+                                        "example": 250.00
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "description": "Descrição do produto",
+                                        "example": "Vestido de festa"
+                                    },
+                                    "category": {
+                                        "type": "string",
+                                        "description": "Categoria do produto",
+                                        "example": "Vestido"
+                                    }
+                                },
+                                "required": [
+                                    "nome",
+                                    "size",
+                                    "price",
+                                    "description",
+                                    "category"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Produto atualizado com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Produto atualizado com sucesso!"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Dados inválidos fornecidos."
+                    },
+                    "404": {
+                        "description": "Produto não encontrado."
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor ao processar a solicitação."
+                    }
+                }
+            }
+        },
+        "/deletarProduto/{id}": {
+            "delete": {
+                "summary": "Deletar produto",
+                "description": "Remove um produto do sistema com base no ID fornecido.",
+                "tags": [
+                    "Produtos"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "description": "ID do produto a ser deletado",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Produto deletado com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Produto deletado com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Produto não encontrado."
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor ao processar a solicitação."
+                    }
+                }
+            }
+        },
+        "/addCart": {
+            "post": {
+                "summary": "Adicionar item ao carrinho",
+                "description": "Adiciona um produto ao carrinho do usuário autenticado.",
+                "tags": [
+                    "Carrinho"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "productId": {
+                                        "type": "integer",
+                                        "description": "ID do produto a ser adicionado ao carrinho.",
+                                        "example": 32
+                                    },
+                                    "size": {
+                                        "type": "string",
+                                        "description": "Tamanho do produto.",
+                                        "example": "M"
+                                    }
+                                },
+                                "required": [
+                                    "productId",
+                                    "size"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Produto adicionado ao carrinho com sucesso.",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "string",
+                                    "example": "Produto adicionado ao carrinho com sucesso"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Dados fornecidos são inválidos ou estão ausentes."
+                    },
+                    "401": {
+                        "description": "Usuário não autenticado."
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor ao processar a solicitação."
+                    }
+                }
+            }
+        },
+        "/cart": {
+            "get": {
+                "summary": "Obter itens do carrinho",
+                "description": "Recupera todos os itens do carrinho do usuário autenticado.",
+                "tags": [
+                    "Carrinho"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Itens do carrinho recuperados com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "idCart": {
+                                                "type": "integer",
+                                                "description": "ID do item no carrinho",
+                                                "example": 1
+                                            },
+                                            "user_id": {
+                                                "type": "integer",
+                                                "description": "ID do usuário",
+                                                "example": 14
+                                            },
+                                            "product_id": {
+                                                "type": "integer",
+                                                "description": "ID do produto",
+                                                "example": 32
+                                            },
+                                            "size": {
+                                                "type": "string",
+                                                "description": "Tamanho do produto",
+                                                "example": "M"
+                                            },
+                                            "nameProduct": {
+                                                "type": "string",
+                                                "description": "Nome do produto",
+                                                "example": "Vestido Longo 2"
+                                            },
+                                            "priceProduct": {
+                                                "type": "number",
+                                                "format": "float",
+                                                "description": "Preço do produto",
+                                                "example": 250.00
+                                            },
+                                            "descriptionProduct": {
+                                                "type": "string",
+                                                "description": "Descrição do produto",
+                                                "example": "Vestido de festa"
+                                            },
+                                            "imageProduct": {
+                                                "type": "string",
+                                                "description": "URL da imagem do produto",
+                                                "example": "http://example.com/image.jpg"
+                                            },
+                                            "sizeProduct": {
+                                                "type": "string",
+                                                "description": "Tamanho disponível do produto",
+                                                "example": "M G GG XGG"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuário não autenticado."
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor ao processar a solicitação."
+                    }
+                }
+            }
+        },
+        "/removeCart/{idCart}": {
+            "delete": {
+                "summary": "Remover item do carrinho",
+                "description": "Remove um item do carrinho do usuário autenticado com base no ID do carrinho.",
+                "tags": [
+                    "Carrinho"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "idCart",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "description": "ID do item no carrinho que será removido.",
+                            "example": 32
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Produto removido do carrinho com sucesso.",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "string",
+                                    "example": "Produto removido do carrinho com sucesso"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "ID do carrinho fornecido é inválido ou está ausente."
+                    },
+                    "401": {
+                        "description": "Usuário não autenticado."
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor ao processar a solicitação."
+                    }
+                }
+            }
+        },
+        "/clearCart": {
+            "delete": {
+                "summary": "Limpar carrinho",
+                "description": "Remove todos os itens do carrinho do usuário autenticado.",
+                "tags": [
+                    "Carrinho"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Carrinho limpo com sucesso.",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "string",
+                                    "example": "Carrinho limpo com sucesso"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuário não autenticado."
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor ao processar a solicitação."
+                    }
+                }
+            }
+        },
+        "/orders": {
+            "post": {
+                "summary": "Criar pedido",
+                "description": "Cria um novo pedido com os itens no carrinho do usuário autenticado. O pedido inclui a data do pedido e os itens associados.",
+                "tags": [
+                    "Pedidos"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "items": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "product_id": {
+                                                    "type": "integer",
+                                                    "example": 32
+                                                },
+                                                "size": {
+                                                    "type": "string",
+                                                    "example": "M"
+                                                }
+                                            },
+                                            "required": [
+                                                "product_id",
+                                                "size"
+                                            ]
+                                        },
+                                        "example": [
+                                            {
+                                                "product_id": 32,
+                                                "size": "M"
+                                            },
+                                            {
+                                                "product_id": 31,
+                                                "size": "G"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "items"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Pedido criado com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Pedido criado com sucesso!"
+                                        },
+                                        "orderId": {
+                                            "type": "integer",
+                                            "example": 123
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "O carrinho está vazio."
+                    },
+                    "401": {
+                        "description": "Usuário não autenticado."
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor ao processar a solicitação."
+                    }
+                }
+            }
+        },
+        "/user/orders": {
+            "get": {
+                "summary": "Buscar pedidos do usuário",
+                "description": "Retorna a lista de pedidos do usuário autenticado, incluindo detalhes dos produtos em cada pedido.",
+                "tags": [
+                    "Pedidos"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de pedidos do usuário com detalhes dos produtos.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 123
+                                            },
+                                            "orderDate": {
+                                                "type": "string",
+                                                "format": "date-time",
+                                                "example": "2024-09-12T12:34:56Z"
+                                            },
+                                            "userId": {
+                                                "type": "integer",
+                                                "example": 14
+                                            },
+                                            "userName": {
+                                                "type": "string",
+                                                "example": "João da Silva"
+                                            },
+                                            "items": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "idOrderProduct": {
+                                                            "type": "integer",
+                                                            "example": 456
+                                                        },
+                                                        "productId": {
+                                                            "type": "integer",
+                                                            "example": 32
+                                                        },
+                                                        "name": {
+                                                            "type": "string",
+                                                            "example": "Vestido Longo 2"
+                                                        },
+                                                        "size": {
+                                                            "type": "string",
+                                                            "example": "M"
+                                                        },
+                                                        "sizeOrder": {
+                                                            "type": "string",
+                                                            "example": "M"
+                                                        },
+                                                        "price": {
+                                                            "type": "number",
+                                                            "format": "float",
+                                                            "example": 200.00
+                                                        },
+                                                        "image": {
+                                                            "type": "string",
+                                                            "example": "http://example.com/image.jpg"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "idOrderProduct",
+                                                        "productId",
+                                                        "name",
+                                                        "size",
+                                                        "sizeOrder",
+                                                        "price",
+                                                        "image"
+                                                    ]
+                                                }
+                                            },
+                                            "total": {
+                                                "type": "number",
+                                                "format": "float",
+                                                "example": 200.00
+                                            }
+                                        },
+                                        "required": [
+                                            "id",
+                                            "orderDate",
+                                            "userId",
+                                            "userName",
+                                            "items",
+                                            "total"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuário não autenticado."
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor ao processar a solicitação."
+                    }
+                }
+            }
+        },
+        "/admin/orders": {
+            "get": {
+                "summary": "Buscar todos os pedidos (Admin)",
+                "description": "Retorna a lista de todos os pedidos, incluindo detalhes dos produtos, acessível apenas para administradores.",
+                "tags": [
+                    "Pedidos"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de todos os pedidos com detalhes dos produtos.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 123
+                                            },
+                                            "orderDate": {
+                                                "type": "string",
+                                                "format": "date-time",
+                                                "example": "2024-09-12T12:34:56Z"
+                                            },
+                                            "userId": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "userName": {
+                                                "type": "string",
+                                                "example": "John Doe"
+                                            },
+                                            "items": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "idOrderProduct": {
+                                                            "type": "integer",
+                                                            "example": 456
+                                                        },
+                                                        "productId": {
+                                                            "type": "integer",
+                                                            "example": 789
+                                                        },
+                                                        "name": {
+                                                            "type": "string",
+                                                            "example": "Produto Exemplo"
+                                                        },
+                                                        "size": {
+                                                            "type": "string",
+                                                            "example": "M"
+                                                        },
+                                                        "sizeOrder": {
+                                                            "type": "string",
+                                                            "example": "L"
+                                                        },
+                                                        "price": {
+                                                            "type": "number",
+                                                            "format": "float",
+                                                            "example": 29.99
+                                                        },
+                                                        "image": {
+                                                            "type": "string",
+                                                            "example": "http://example.com/image.jpg"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "idOrderProduct",
+                                                        "productId",
+                                                        "name",
+                                                        "size",
+                                                        "sizeOrder",
+                                                        "price",
+                                                        "image"
+                                                    ]
+                                                }
+                                            },
+                                            "total": {
+                                                "type": "number",
+                                                "format": "float",
+                                                "example": 59.98
+                                            }
+                                        },
+                                        "required": [
+                                            "id",
+                                            "orderDate",
+                                            "userId",
+                                            "userName",
+                                            "items",
+                                            "total"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Acesso negado. Apenas administradores podem acessar esta rota."
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor ao processar a solicitação."
+                    }
+                }
+            }
+        }
+    }
+}
