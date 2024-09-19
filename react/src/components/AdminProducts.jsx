@@ -38,11 +38,11 @@ const ProductCRUD = () => {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          nome: updatedProduct.nome,
-          size: updatedProduct.size,
-          price: updatedProduct.price,
-          description: updatedProduct.description,
-          category: updatedProduct.category,
+          nome: updatedProduct.nameProduct,
+          price: updatedProduct.priceProduct,
+          size: updatedProduct.sizeProduct,
+          description: updatedProduct.descriptionProduct,
+          category: updatedProduct.categoryProduct,
         }),
       });
 

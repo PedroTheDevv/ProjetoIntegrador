@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -16,6 +16,13 @@ const Login = () => {
   const togglePasswordVisibility = () => {
     setPasswordShown(!passwordShown);
   };
+
+  useEffect(() => {
+    if (error) {
+      alert(error);
+      setError('');
+    }
+  }, [error]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -95,7 +102,7 @@ const Login = () => {
         <button className="submit" type="submit" disabled={loading}>
           {loading ? 'Entrando...' : 'Entrar'}
         </button>
-        {error && alert(error)}
+        
 
         <p className="signup-link">
           Novo por aqui?&nbsp;&nbsp;

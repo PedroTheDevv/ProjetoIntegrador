@@ -23,7 +23,6 @@ const EditProductModal = ({ isOpen, onRequestClose, product, onSave }) => {
     }, [product]);
 
     useEffect(() => {
-        // Validate form
         setIsFormValid(
             nome && price && size && description && category
         );
@@ -31,7 +30,12 @@ const EditProductModal = ({ isOpen, onRequestClose, product, onSave }) => {
 
     const handleSave = () => {
         if (isFormValid) {
-            onSave({ ...product, nameProduct: nome, priceProduct: price, sizeProduct: size, descriptionProduct: description, categoryProduct: category });
+            onSave({ ...product,
+            nameProduct: nome,
+            priceProduct: price,
+            sizeProduct: size,
+            descriptionProduct: description,
+            categoryProduct: category });
             onRequestClose();
         } else {
             alert('Por favor, preencha todos os campos.');
